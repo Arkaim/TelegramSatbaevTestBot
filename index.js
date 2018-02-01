@@ -15,7 +15,7 @@ bot.onText(/\/start/, msg => {
 
 	// Отправляем первый экран (Бакалавр, Магистрант, Докторант ...)
 
-	bot.sendMessage(msg.chat.id, "", {
+	bot.sendMessage(msg.chat.id, "Выберите подходяющую для вас функцию", {
 		reply_markup: {
 			keyboard: [
 				["Я - студент бакалавр", "Я - магистрант"],
@@ -25,28 +25,53 @@ bot.onText(/\/start/, msg => {
 	});
 });
 
-// bot.on("message", msg => {
-// 	console.log(msg.text);
-// 	const chatId = msg.chat.id;
-// 	if (msg.text) {
-// 		if (msg.text == "О кафедре НИИ") {
-// 			bot.sendMessage(chatId, "asd", {
-// 				reply_markup: {
-// 					keyboard: [["Миссия", "ППС"], ["Назад", "На главную"]]
-// 				}
-// 			});
-// 		} else if (msg.text === "Я - студент бакалавр") {
-// 			bot.sendMessage(msg.chat.id, "", {
-// 				reply_markup: {
-// 					keyboard: [
-// 						["Выбор траектории обучения ИУП", "Выбор дисциплин"],
-// 						["Академический календарь", "Регистрация"],
-// 						["Практика", "ГАК"],
-// 						["Назад", "На главную"]
-// 					]
-// 				}
-// 			});
-// 		} else {
-// 		}
-// 	}
-// });
+bot.on("message", msg => {
+	console.log(msg.text);
+	const chatId = msg.chat.id;
+
+	if (
+		msg.text == "О кафедре НИИ" ||
+		msg.text == "Назад к информации о кафедре"
+	) {
+		bot.sendMessage(chatId, "О кафедре НИИ", {
+			reply_markup: {
+				keyboard: [["Миссия", "ППС"], ["На главную"]]
+			}
+		});
+	} else if (msg.text == "На главную") {
+		bot.sendMessage(msg.chat.id, "Выберите подходяющую для вас функцию", {
+			reply_markup: {
+				keyboard: [
+					["Я - студент бакалавр", "Я - магистрант"],
+					["Я - докторант", "О кафедре НИИ"]
+				]
+			}
+		});
+	} else if (msg.text == "ППС" || msg.text == "Назад к ППС") {
+		bot.sendMessage(chatId, "asdd", {
+			reply_markup: {
+				keyboard: [
+					["1", "2"],
+					["3", "4"],
+					["5", "6"],
+					["Назад к информации о кафедре", "На главную"]
+				]
+			}
+		});
+	} else if (
+		msg.text == "Я - студент бакалавр" ||
+		msg.text == "Назад в меню бакалавра"
+	) {
+		bot.sendMessage(chatId, "Вы - студент бакалавр", {
+			reply_markup: {
+				keyboard: [
+					["Выбор траектории обучения ИУП", "Выбор дисциплин"],
+					["Академический календарь", "Регистрация"],
+					["Практика", "ГАК"],
+					["На главную"]
+				]
+			}
+		});
+	} else {
+	}
+});
