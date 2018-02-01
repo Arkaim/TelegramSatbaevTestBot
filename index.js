@@ -11,14 +11,42 @@ const helloMessage =
 const logoUrl = "satbaevLogo.jpg";
 
 bot.onText(/\/start/, msg => {
-	const { id } = msg.chat;
-	bot.sendPhoto(id, logoUrl, { caption: helloMessage });
+	bot.sendPhoto(msg.chat.id, logoUrl, { caption: helloMessage });
 
 	// Отправляем первый экран (Бакалавр, Магистрант, Докторант ...)
 
-	bot.sendMessage(id, "Выберите подходящую функцию", {
+	bot.sendMessage(msg.chat.id, "", {
 		reply_markup: {
-			keyboard: [["Я - студент бакалавр"], []]
+			keyboard: [
+				["Я - студент бакалавр", "Я - магистрант"],
+				["Я - докторант", "О кафедре НИИ"]
+			]
 		}
 	});
 });
+
+// bot.on("message", msg => {
+// 	console.log(msg.text);
+// 	const chatId = msg.chat.id;
+// 	if (msg.text) {
+// 		if (msg.text == "О кафедре НИИ") {
+// 			bot.sendMessage(chatId, "asd", {
+// 				reply_markup: {
+// 					keyboard: [["Миссия", "ППС"], ["Назад", "На главную"]]
+// 				}
+// 			});
+// 		} else if (msg.text === "Я - студент бакалавр") {
+// 			bot.sendMessage(msg.chat.id, "", {
+// 				reply_markup: {
+// 					keyboard: [
+// 						["Выбор траектории обучения ИУП", "Выбор дисциплин"],
+// 						["Академический календарь", "Регистрация"],
+// 						["Практика", "ГАК"],
+// 						["Назад", "На главную"]
+// 					]
+// 				}
+// 			});
+// 		} else {
+// 		}
+// 	}
+// });
