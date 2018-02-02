@@ -1,6 +1,6 @@
 const TelegramBot = require("node-telegram-bot-api");
 
-const TOKEN = "526171456:AAFEfRrca58fkhuWi-DoODjczz2MlUOxNlo";
+const TOKEN = "464264163:AAEFcJtW7HqmWXa2x_HcoNhWh80Eiu1w8vs";
 
 // пацаны ищите бота в телеграме по @ArkaimTestBot
 
@@ -38,7 +38,7 @@ bot.on("message", msg => {
 				keyboard: [["Миссия", "ППС"], ["На главную"]]
 			}
 		});
-	} else if (msg.text == "На главную") {
+	} else if (msg.text === "На главную") {
 		bot.sendMessage(msg.chat.id, "Выберите подходяющую для вас функцию", {
 			reply_markup: {
 				keyboard: [
@@ -48,7 +48,7 @@ bot.on("message", msg => {
 			}
 		});
 	} else if (msg.text == "ППС" || msg.text == "Назад к ППС") {
-		bot.sendMessage(chatId, "asdd", {
+		bot.sendMessage(chatId, "asd", {
 			reply_markup: {
 				keyboard: [
 					["1", "2"],
@@ -72,6 +72,9 @@ bot.on("message", msg => {
 				]
 			}
 		});
-	} else {
+	} else if (msg.text == "Выбор траектории обучения ИУП") {
+		bot.sendDocument(chatId, "lab1.docx", {
+			caption: "hello"
+		});
 	}
 });
